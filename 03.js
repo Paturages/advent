@@ -62,15 +62,12 @@
   Bottom is a bit of a special case since it wraps around to the
   generated right side.
 */
-const previous = {
+(function findValue(previous = {
   right: [25, 1, 2],
   top: [2, 4, 5],
   left: [5, 10, 11],
   bottom: [11, 23, 25],
-};
-const input = 289326;
-
-(function findValue() {
+}, input = 289326) {
   let found;
   const right = [];
   previous.right.forEach((x, i) =>
@@ -105,6 +102,5 @@ const input = 289326;
   if (found) return found;
 
   right.unshift(bottom[bottom.length - 1]);
-  Object.assign(previous, { right, top, left, bottom });
-  return findValue();
+  return findValue({ right, top, left, bottom }, input);
 })();
